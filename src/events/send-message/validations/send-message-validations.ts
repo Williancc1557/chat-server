@@ -2,7 +2,7 @@ export const sendMessageValidation = (author: string, message: string) => {
     const authorLenght = author.length;
     const messageLenght = message.length;
 
-    const maxLenghtMessage = 500;
+    const maxLenghtMessage = 2500;
     const maxLenghtAuthor = 30;
 
     const invalidLenght = 0;
