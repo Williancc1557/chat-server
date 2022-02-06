@@ -21,4 +21,8 @@ io.on("connection", (socket) => {
     })
 });
 
-server.listen(3000);
+const portaLocal = 3000;
+const portaHost = process.env.PORT;
+const PORTA = portaHost || portaLocal;
+
+server.listen(PORTA);
