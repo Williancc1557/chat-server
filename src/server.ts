@@ -1,24 +1,16 @@
-import express from "express";
+import type { Socket } from "socket.io";
 import { Server } from "socket.io";
-import http from "http";
-
-const app = express();
-
-const server = http.createServer(app);
+import { sendMessage } from "./events/send-message/send-message.event";
+import { previusMessage } from "./events/previus-message/previus-message.event";
+import { server } from "./app";
 
 const io = new Server(server);
 
-const chatData: Array<object> = [];
+export const dataChat: Array<object> = [];
 
-
-io.on("connection", (socket) => {
-
-    socket.emit("previusMessage", chatData);
-
-    socket.on("sendMessage", (data: object) => {
-        chatData.push(data);
-        socket.broadcast.emit("receivedMessage", data)
-    })
+io.on("connection", (socket: Socket) => {
+    previusMessage("previusMessage", socket, dataChat);
+    sendMessage(socket, "sendMessage");
 });
 
 const portaLocal = 3000;
