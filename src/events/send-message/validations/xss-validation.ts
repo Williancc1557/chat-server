@@ -5,16 +5,7 @@ import type { XssValidationDto } from "../../../dto/xss-validation.dto";
 export const xssValidation = (data: MessageDto): XssValidationDto => {
     const xssValidationMessage = xss(data.message, {
         whiteList: {
-            video: [
-                "controls",
-                "crossorigin",
-                "muted",
-                "playsinline",
-                "poster",
-                "src",
-                "height",
-                "width",
-            ],
+            audio: ["false"],
         },
     });
 
