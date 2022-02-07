@@ -1,8 +1,8 @@
 import { sleep } from "@techmmunity/utils";
 
-export const userMuted = [];
+export const userMuted: Array<string> = [];
 
-export const muteUser = async (ip: string) => {
+export const muteUser = async (ip: string): Promise<void> => {
     userMuted.push(ip);
 
     const muteSeconds = 60;

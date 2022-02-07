@@ -1,4 +1,4 @@
-export const sendMessageValidation = (author: string, message: string) => {
+export const sendMessageValidation = (author: string, message: string): boolean => {
     const authorLenght = author.length;
     const messageLenght = message.length;
 
