@@ -17,6 +17,7 @@ export const xssValidation = (data: MessageDto): XssValidationDto => {
             ],
         },
     });
+
     const xssValidationAuthor = xss(data.author);
 
     return {

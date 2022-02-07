@@ -1,16 +1,8 @@
-import rateLimit from "express-rate-limit";
+import { RateLimiterMemory } from "rate-limiter-flexible";
 
 
-export const setRateLimitServer = (minutes: number) => {
-    const seconds = 60;
-    const miliseconds = 1000;
-
-    const rateLimitConfig = rateLimit({
-        windowMs: minutes * seconds * miliseconds,
-        max: 100,
-        message:
-            "Muitas requisições foram solicitadas nesse IP, por favor, aguarde 3 minutos",
+export const rateLimiter = new RateLimiterMemory(
+    {
+        points: 3, // 5 points
+        duration: 1, // per second
     });
-
-    return rateLimitConfig;
-};
