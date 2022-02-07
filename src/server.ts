@@ -8,7 +8,7 @@ const io = new Server(server);
 
 export const dataChat: Array<object> = [];
 
-io.on("connection", (socket: Socket) => {
+io.on("connection", (socket: Socket): void => {
     previusMessage("previusMessage", socket, dataChat);
     sendMessage(socket, "sendMessage");
 });
