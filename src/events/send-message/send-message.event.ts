@@ -4,9 +4,9 @@ import { dataChat } from "../../server";
 import { maxMessageServer } from "../../utils/max-message-server/max-message-server";
 import { validateAll } from "./validations";
 
-export const sendMessage = (socket: Socket, eventName: string): void => {
+export const sendMessageEvent = (eventName: string, socket: Socket): void => {
     socket.on(eventName, async (data: MessageDto) => {
-        const { author, message } = data;
+        const { author, message }: MessageDto = data;
         const validateMessagAndAuthor = await validateAll({ author, message, socket });
 
         const maxMessageQuantity = 10;
