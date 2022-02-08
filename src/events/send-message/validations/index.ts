@@ -5,15 +5,14 @@ import { isMutedUser } from "./is-muted-user";
 import { sendMessageValidation } from "./message-and-author-validations";
 
 export const validateAll = async ({ socket, author, message }: ValidateAllDto): Promise<boolean> => {
+    if (isMutedUser(socket.handshake.address)) return false;
+
     try {
         await rateLimiter.consume(socket.handshake.address);
     } catch {
         muteUser(socket.handshake.address, socket, author);
         return false;
     }
-
-    if (isMutedUser(socket.handshake.address)) return false;
-
     if (!sendMessageValidation(author, message)) return false;
 
     return true;

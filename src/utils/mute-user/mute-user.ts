@@ -5,10 +5,12 @@ export const userMuted: Array<string> = [];
 
 export const muteUser = async (ip: string, socket: Socket, author: string): Promise<void> => {
     userMuted.push(ip);
+    const messageError = `${author} has been muted for 2 minutes, please don't send spam`;
 
     const muteSeconds = 120;
 
-    socket.emit("rateLimit", author);
+    socket.broadcast.emit("rateLimit", messageError);
+    socket.emit("rateLimit", messageError);
 
     await sleep(muteSeconds);
 
