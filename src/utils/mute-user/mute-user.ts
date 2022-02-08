@@ -1,11 +1,14 @@
 import { sleep } from "@techmmunity/utils";
+import type { Socket } from "socket.io";
 
 export const userMuted: Array<string> = [];
 
-export const muteUser = async (ip: string): Promise<void> => {
+export const muteUser = async (ip: string, socket: Socket, author: string): Promise<void> => {
     userMuted.push(ip);
 
-    const muteSeconds = 60;
+    const muteSeconds = 120;
+
+    socket.emit("rateLimit", author);
 
     await sleep(muteSeconds);
 
