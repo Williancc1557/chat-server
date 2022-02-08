@@ -9,7 +9,7 @@ export const sendMessageEvent = (eventName: string, socket: Socket): void => {
         const { author, message }: MessageDto = data;
         const validateMessagAndAuthor = await validateAll({ author, message, socket });
 
-        const maxMessageQuantity = 10;
+        const maxMessageQuantity = 100;
         maxMessageServer(maxMessageQuantity);
 
         if (!validateMessagAndAuthor) return false;
