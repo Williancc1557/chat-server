@@ -10,7 +10,7 @@ export const muteUser = async (ip: string, socket: Socket, author: string): Prom
     const muteSeconds = 120;
 
     socket.broadcast.emit("rateLimit", messageError);
-    socket.emit("rateLimit", messageError);
+    socket.emit("blockChat", messageError);
 
     await sleep(muteSeconds);
 
