@@ -2,6 +2,10 @@ import { userMuted } from "../../../utils/mute-user/mute-user";
 
 export const isMutedUser = (ip: string): boolean => {
     const exists = userMuted.find(iplist => iplist === ip);
-    if (exists) return true;
+
+    if (exists) {
+        return true;
+    }
+
     return false;
 };  
