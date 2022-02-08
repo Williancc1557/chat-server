@@ -1,8 +1,8 @@
 import type { ValidateAllDto } from "../../../dto/validate-all.dto";
 import { rateLimiter } from "../../../middlewares/rate-limit";
-import { muteUser } from "../../mute-user/mute-user";
+import { muteUser } from "../../../utils/mute-user/mute-user";
 import { isMutedUser } from "./is-muted-user";
-import { sendMessageValidation } from "./send-message-validations";
+import { sendMessageValidation } from "./message-and-author-validations";
 
 export const validateAll = async ({ socket, author, message }: ValidateAllDto): Promise<boolean> => {
     try {
