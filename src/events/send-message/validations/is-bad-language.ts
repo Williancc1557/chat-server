@@ -7,7 +7,7 @@ export const isBadLanguage = (message: string, socket: Socket, author: string): 
     const messageErrorBadLanguage = `${author}, Don't send bad language.`;
 
     for (let i = 0; i < badLanguage.length; i++) {
-        const checkBadLaguage = message.search(badLanguage[i]);
+        const checkBadLaguage = message.toLowerCase().search(badLanguage[i]);
 
         if (checkBadLaguage == badLanguageNumber) {
             socket.broadcast.emit("sendError", messageErrorBadLanguage);

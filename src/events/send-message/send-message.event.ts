@@ -7,12 +7,12 @@ import { validateAll } from "./validations";
 export const sendMessageEvent = (eventName: string, socket: Socket): void => {
     socket.on(eventName, async (data: MessageDto) => {
         const { author, message }: MessageDto = data;
-        const validateMessagAndAuthor = await validateAll({ author, message, socket });
+        const validateMessageAndAuthor = await validateAll({ author, message, socket });
 
         const maxMessageQuantity = 100;
         maxMessageServer(maxMessageQuantity);
 
-        if (!validateMessagAndAuthor) return false;
+        if (!validateMessageAndAuthor) return false;
 
         socket.broadcast.emit("receivedMessage", data);
         dataChat.push(data);
