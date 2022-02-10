@@ -9,7 +9,7 @@ const io = new Server(server);
 export const dataChat: Array<object> = [];
 
 io.on("connection", (socket: Socket): void => {
-    previusMessageEvent("previusMessage", socket, dataChat);
+    previusMessageEvent("previusMessage", socket);
     sendMessageEvent("sendMessage", socket);
 });
 
